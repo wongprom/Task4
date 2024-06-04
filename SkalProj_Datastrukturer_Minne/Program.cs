@@ -8,9 +8,33 @@ namespace SkalProj_Datastrukturer_Minne
         /// The main method, vill handle the menues for the program.
         /// </summary>
         /// <param name="args"></param>
+        /// 
+        # region Frågor som ska besvaras
+        /*
+            1. Hur fungerar stacken och heapen? Förklara gärna med exempel eller skiss på dessa grundläggande funktion.
+                SVAR: Minnet är uppdelat i en stack och heap. 
+                    Stacken är som staplade skolådor. För att komma åt nedre lådor måste man först lyfta bor de övre. 
+                    Stacken har koll på vilka metoder och anrop som körs. Efter att metoden/anropet körts kastas den från minnet, alltså är stacken självunderhållande.
+                    
+
+
+                    Heapen, där ligger allting huller om buller, men är lätt åtkomligt om du vet vad du vill ha.
+                    Heapen är inte självunderhållande, utan behöver oroa sig för garbage Collection.
+
+            2. Vad är Value Types respektive Reference Types och vad skiljer dem åt?
+                SVAR: Value Types är: bool, byte, char, decimal, double, enum, float, int, long, sbyte, short, struct, uint, ulong, ushort. Value Types lagras där den deklareras, anitngen på stacken eller heapen. 
+                    
+                    Reference Types ärver från System.Objects : class, interface, object, delegate och string.  Reference Types lagras alltid på heapen. En Reference Type försvinner inte från minnet efter att den körts.
+
+
+            3. Följande metoder genererar olika svar. Den första returnerar 3, den andra returnerar 4, varför?
+                SVAR: ReturnValue() är x och y Value Types.
+                    ReturnValue2() är x och y Reference Types. Efter y = x; blir y en kopia av x instansen där både x och y pekar på samma "hink".
+
+        */
+        # endregion svar
         static void Main()
         {
-
             while (true)
             {
                 Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 0) of your choice"
