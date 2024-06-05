@@ -221,12 +221,31 @@ namespace SkalProj_Datastrukturer_Minne
             */
 
             Stack<string> queue = new Stack<string>();
+            Stack<char> reversedStack = new Stack<char>();
             Console.WriteLine("Type ex '+Adam' to stack Adam.");
             Console.WriteLine("Type ex '-' to remove person from stack. ");
             Console.WriteLine("Type '0' to exit Examine a List.");
 
+
             bool isContinue = true;
 
+             string ReverseText(string text) 
+            {
+                string reversed = string.Empty;
+
+                foreach (char c in text)
+                {
+                    reversedStack.Push(c);
+                }
+
+                while (reversedStack.Count > 0)
+                {
+                    reversed += reversedStack.Pop();
+                }
+
+                return reversed;
+                
+            }  
             while (isContinue)
             {
 
@@ -238,8 +257,9 @@ namespace SkalProj_Datastrukturer_Minne
                 {
                     case '+':
                         Console.Clear();
-                        queue.Push(value);
-                        Console.WriteLine($"{value} has been stacked.");
+                        queue.Push(ReverseText(value));
+                        Console.WriteLine($"reversed: {ReverseText(value)}");
+                        Console.WriteLine($"{ReverseText(value)} has been stacked.");
                         Console.WriteLine();
                         Console.WriteLine($"Stack line: ");
                         foreach (string person in queue) Console.WriteLine(person);
@@ -266,6 +286,7 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                 }
             }
+
         }
 
         static void CheckParanthesis()
