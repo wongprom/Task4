@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 
 namespace SkalProj_Datastrukturer_Minne
 {
@@ -94,14 +95,55 @@ namespace SkalProj_Datastrukturer_Minne
              * In both cases, look at the count and capacity of the list
              * As a default case, tell them to use only + or -
              * Below you can see some inspirational code to begin working.
+             * 
+             * 2.När ökar listans kapacitet?
+             *  SVAR: Den ökar när kapaciteten är full.
+             * 3. Med hur mycket ökar kapaciteten?
+             *  SVAR: med 4.
+             * 4. Varför ökar inte listans kapacitet i samma takt som element läggs till?
+             *  Svar: Kapaciteten ligger på 4 från början
+             * 5. Minskar kapaciteten när elementet tas bort ur listan?
+             *  SVAR: Nej.
+             * 6. När är det då fördelaktigt att använda en egendefinerad array istället för en lista?
+             *  SVAR: När man vet från början hur stor arrayn ska vara.
             */
 
-            //List<string> theList = new List<string>();
-            //string input = Console.ReadLine();
-            //char nav = input[0];
-            //string value = input.substring(1);
+            List<string> theList = new List<string>();
+            Console.WriteLine("Type ex '+Adam' to add Adam to list.");
+            Console.WriteLine("Type ex'-Adam' to remove Adam from list.");
+            Console.WriteLine("Type '0' to exit Examine a List.");
 
-            //switch(nav){...}
+            bool isContinue = true;
+            while (isContinue)
+            {
+                string input = Console.ReadLine()!;
+                char nav = input.ToCharArray()[0];
+                string value = input.Substring(1);
+               
+
+                switch (nav)
+                {
+                    case '+':
+                        Console.Clear();
+                        theList.Add(value);
+                        Console.WriteLine($"{value} is added to list");
+                        Console.WriteLine($"Count: {theList.Count}.");
+                        Console.WriteLine($"Capacity: {theList.Capacity}.");
+                        break;
+                    case '-':
+                        theList.Remove(value);
+                        Console.WriteLine($"{value} is Removed from list");
+                        Console.WriteLine($"Count: {theList.Count}.");
+                        Console.WriteLine($"Capacity: {theList.Capacity}.");
+                        break;  
+                    case '0':
+                        isContinue = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid command. Use '+' to add or '-' to remove. '0' to exit Examine a List");
+                        break;
+                }
+            }
         }
 
         /// <summary>
