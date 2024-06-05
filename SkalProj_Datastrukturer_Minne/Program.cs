@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq.Expressions;
 
 namespace SkalProj_Datastrukturer_Minne
@@ -156,6 +157,53 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+            Queue<string> queue = new Queue<string>();
+            Console.WriteLine("Type ex '+Adam' to queue Adam.");
+            Console.WriteLine("Type ex '-' to remove person first in queue. ");
+            Console.WriteLine("Type '0' to exit Examine a List.");
+
+            bool isContinue = true;
+
+            while (isContinue)
+            {
+
+                string input = Console.ReadLine()!;
+                char nav = input.ToCharArray()[0];
+                string value = input.Substring(1);
+
+                switch (nav)
+                {
+                    case '+':
+                        Console.Clear();
+                        queue.Enqueue(value);
+                        Console.WriteLine($"{value} has ben queued.");
+                        Console.WriteLine();
+                        Console.WriteLine($"Queue line: ");
+                        foreach (string person in queue) Console.WriteLine(person);
+                        break;
+                    case '-':
+                        if (queue.Count > 0)
+                        {
+                            Console.Clear();
+                            string dequeuedItem = queue.Dequeue();
+                            Console.WriteLine($"{dequeuedItem} has been dequeued.");
+                            Console.WriteLine();
+                            Console.WriteLine($"Queue line: "); 
+                            foreach (string person in queue) Console.WriteLine(person);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Queue is empty. Cannot dequeue.");
+                        }
+                        break;
+                    case '0':
+                        isContinue = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid command. Use '+' to add or '-' to remove. '0' to exit Examine a List");
+                        break;
+                }
+            }
         }
 
         /// <summary>
