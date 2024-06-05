@@ -215,7 +215,57 @@ namespace SkalProj_Datastrukturer_Minne
              * Loop this method until the user inputs something to exit to main menue.
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
+             * 
+             * 1. Varför är det inte så smart att använda en stack i det här fallet?
+             *  SVAR: Det blir helt avit i detta ICA-kö fall. Skulle passa bättre i ett fall där man sparkar personen som kommer in sist. 
             */
+
+            Stack<string> queue = new Stack<string>();
+            Console.WriteLine("Type ex '+Adam' to stack Adam.");
+            Console.WriteLine("Type ex '-' to remove person from stack. ");
+            Console.WriteLine("Type '0' to exit Examine a List.");
+
+            bool isContinue = true;
+
+            while (isContinue)
+            {
+
+                string input = Console.ReadLine()!;
+                char nav = input.ToCharArray()[0];
+                string value = input.Substring(1);
+
+                switch (nav)
+                {
+                    case '+':
+                        Console.Clear();
+                        queue.Push(value);
+                        Console.WriteLine($"{value} has been stacked.");
+                        Console.WriteLine();
+                        Console.WriteLine($"Stack line: ");
+                        foreach (string person in queue) Console.WriteLine(person);
+                        break;
+                    case '-':
+                        if (queue.Count > 0)
+                        {
+                            Console.Clear();
+                            queue.Pop();
+                            Console.WriteLine();
+                            Console.WriteLine($"Stack line after Pop(): ");
+                            foreach (string person in queue) Console.WriteLine(person);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Stack is empty. Cannot Pop().");
+                        }
+                        break;
+                    case '0':
+                        isContinue = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid command. Use '+Adam' to add or '-' to remove. '0' to exit Examine a List");
+                        break;
+                }
+            }
         }
 
         static void CheckParanthesis()
