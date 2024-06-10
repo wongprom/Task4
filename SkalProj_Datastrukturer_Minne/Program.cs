@@ -297,6 +297,57 @@ namespace SkalProj_Datastrukturer_Minne
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
 
+            bool isContinue = true;
+
+            while (isContinue)
+            {
+                Stack<char> stack = new Stack<char>();
+                Console.WriteLine("Type paranthesis to check (or type 'exit' to leave CheckParenthesis): ");
+                string input = Console.ReadLine()!;
+
+                if (input.ToLower() == "exit")
+                {
+                    isContinue = false;
+                    continue;
+                }
+
+                bool havePair = true;
+
+                foreach (char c in input)
+                {
+                    if (c == '(' || c == '{' || c == '[')
+                    {
+                        stack.Push(c);
+                    }
+                    else if (c == ')' || c == '}' || c == ']')
+                    {
+                        if (stack.Count == 0)
+                        {
+                            havePair = false;
+                            break;
+                        }
+
+                        char top = stack.Pop();
+                        if ((c == ')' && top != '(') ||
+                            (c == '}' && top != '{') ||
+                            (c == ']' && top != '['))
+                        {
+                            havePair = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (havePair && stack.Count == 0)
+                {
+                    Console.WriteLine("Correct");
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect");
+                }
+            }
+
         }
 
     }
